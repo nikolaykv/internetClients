@@ -5,3 +5,5 @@ docker/nginx/logs/**/*
 
 data/composer.lock
 data/vendor/**/*
+
+composer.phar

@@ -1,5 +1,6 @@
 <?php
 
+require_once 'vendor/autoload.php';
 // Дебаг
 require 'application/libs/Dumper.php';
 
