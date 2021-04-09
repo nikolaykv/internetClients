@@ -74,8 +74,7 @@ class DataBase
             $this->connection->prepare($sql)->execute();
             return true;
         } catch (PDOException $e) {
-            print 'Не удалось вставить запись в базу: <b>' . $e->getMessage() . '</b>';
-            return false;
+            return $e->getMessage();
         }
     }
 }

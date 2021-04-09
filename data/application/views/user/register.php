@@ -5,8 +5,7 @@
                 <div class="card-header">Регистрация</div>
 
                 <div class="card-body">
-                    <form method="POST" action="register-user">
-
+                    <form>
                         <!-- Имя -->
                         <div class="form-group row">
                             <label for="name"
@@ -74,7 +73,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary register-user-btn">
                                     Зарегистрироваться
                                 </button>
                             </div>

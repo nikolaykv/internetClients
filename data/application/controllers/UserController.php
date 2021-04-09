@@ -22,14 +22,37 @@ class UserController extends Controller
     public function signupAction()
     {
         if ($_POST) {
-            $result = $this->model->registerNewSimpleUser($_POST);
+            // Валидация данных в базовом контролере
+            $validateErrors = $this->validateData($_POST);
 
-            if ($result) {
-                // TODO сообщение об успехе и какой-нибудь редирект
-                echo 'Успех регистрации';
+            if (!empty($validateErrors)) {
+                $response = [
+                    'status' => false,
+                    'type' => 0,
+                    'message' => 'Ошибки валидации',
+                    'fields' => $validateErrors
+                ];
+                echo json_encode($response);
+            } else {
+                $result = $this->model->registerNewSimpleUser($_POST);
+                if ($result) {
+                    //TODO записывать информацию об пользователе в сессию и чекать его по кукам, а также защитить маршруты по ролям пользователей
+                    $response = [
+                        'status' => $result,
+                        'type' => 1,
+                        'message' => 'Пользователь успешно зарегистрирован в системе!'
+                    ];
+                } else {
+                    $response = [
+                        'status' => false,
+                        'type' => 2,
+                        'system_message' => 'Выброшено исключение при добавлении нового пользователя!',
+                        'message' => $result
+                    ];
+                }
+                echo json_encode($response);
             }
         } else {
-            // TODO сообщение об не поддерживаем для данного маршрута методе
             View::errorCode(404);
         }
     }

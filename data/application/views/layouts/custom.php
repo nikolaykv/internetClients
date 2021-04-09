@@ -40,6 +40,9 @@
 <main class="py-5">
     <?= $content; ?>
 </main>
-<script src="<?= $localhost; ?>/public/scripts/bootsrap/bootstrap.bundle.min.js"
+<script src="<?= $localhost; ?>/public/scripts/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="<?= $localhost; ?>/public/scripts/bootsrap/bootstrap.bundle.min.js"></script>
+<script src="<?= $localhost; ?>/public/scripts/app.js"></script>
+
 </body>
 </html>

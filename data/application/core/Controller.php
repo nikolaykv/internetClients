@@ -17,6 +17,8 @@ abstract class Controller
 
     public $model;
 
+    private $validationErrors = [];
+
     /**
      * @var \application\core\View
      *
@@ -50,5 +52,45 @@ abstract class Controller
         } else {
             View::errorCode(500);
         }
+    }
+
+    public function validateData($data)
+    {
+        switch ($data) {
+            case empty($data['name']):
+                $this->validationErrors['name_error_required'] = 'Имя должно быть заполнено!';
+                break;
+            case !is_string($data['name']):
+                $this->validationErrors['name_error_type'] = 'Имя должно быть строкой!';
+                break;
+            case mb_strlen($data['name']) > 10:
+                $this->validationErrors['name_error_length'] = 'Имя не должно превышать 10 символов!';
+                break;
+            case empty($data['surname']):
+                $this->validationErrors['surname_error_required'] = 'Фамилия должна быть заполнена!';
+                break;
+            case !is_string($data['surname']):
+                $this->validationErrors['surname_error_type'] = 'Фамилия должна быть строкой!';
+                break;
+            case mb_strlen($data['surname']) > 15:
+                $this->validationErrors['surname_error_length'] = 'Фамилия не должна превышать 15 символов!';
+                break;
+            case empty($data['email']):
+                $this->validationErrors['email_error_required'] = 'Email должен быть заполнен!';
+                break;
+            case !is_string($data['email']):
+                $this->validationErrors['email_error_type'] = 'Email должен быть строкой!';
+                break;
+            case filter_var($data['email'], FILTER_VALIDATE_EMAIL):
+                $this->validationErrors['email_error_invalid'] = 'Email не является валидным!';
+                break;
+            case empty($data['password']):
+                $this->validationErrors['password_error_required'] = 'Пароль должен быть заполнен!';
+                break;
+            case mb_strlen($data['password']) > 20:
+                $this->validationErrors['password_error_length'] = 'Пароль не должен превышать 20 символов!';
+                break;
+        }
+        return $this->validationErrors;
     }
 }

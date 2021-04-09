@@ -15,3 +15,12 @@ for ($i = 0; $i < 5; $i++) {
         'is_admin' => 'no',
     ]);
 }
+
+// crete admin
+Capsule::table('users')->insert([
+    'name' => 'admin',
+    'surname' => 'Admin',
+    'email' => 'admin@admin.com',
+    'password' => password_hash(str_shuffle('admin'), PASSWORD_DEFAULT),
+    'is_admin' => 'yes',
+]);
