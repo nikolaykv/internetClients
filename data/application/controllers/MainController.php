@@ -14,7 +14,18 @@ class MainController extends Controller
      */
     public function indexAction()
     {
-        $this->viewData->renderViews('Главная страница');
+        $localhost = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
+        $this->viewData->renderViews('Главная страница', array(), $localhost);
+    }
+
+    public function loginAction() {
+        $this->viewData->commonLayout = 'custom';
+        $this->viewData->renderViews('Вход');
+    }
+
+    public function registerAction() {
+        $this->viewData->commonLayout = 'custom';
+        $this->viewData->renderViews('Вход');
     }
 
     /**

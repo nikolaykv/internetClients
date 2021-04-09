@@ -48,7 +48,7 @@ class View
      *
      * Отдаст шаблоны страниц
      */
-    public function renderViews($title, $vars = [])
+    public function renderViews($title, $vars = [], $localhost = '')
     {
         // Распаковать ключи и значения массива в переменную
         extract($vars);
