@@ -32,7 +32,6 @@ class DataBase
                 $config['password'],
                 [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
             );
-            
         } catch (PDOException $e) {
             print 'Ошибка подключения к базе: <b>' . $e->getMessage() . '</b>';
             die();
@@ -67,5 +66,16 @@ class DataBase
     {
         $result = $this->query($sql);
         return $result->fetchColumn();
+    }
+
+    public function insertRow($sql)
+    {
+        try {
+            $this->connection->prepare($sql)->execute();
+            return true;
+        } catch (PDOException $e) {
+            print 'Не удалось вставить запись в базу: <b>' . $e->getMessage() . '</b>';
+            return false;
+        }
     }
 }

@@ -34,9 +34,6 @@ abstract class Controller
 
         $this->viewData = new View($allRoutes);
 
-        // Пример использования второго layout || Нужна проверка на существование такого метода
-        // $this->otherLayout();
-
         $this->model = $this->loadModel($allRoutes['controller']);
     }
 
@@ -48,8 +45,7 @@ abstract class Controller
     {
         $pathForModel = 'application\models\\' . ucfirst($name);
 
-        if (class_exists($pathForModel))
-        {
+        if (class_exists($pathForModel)) {
             return new $pathForModel();
         } else {
             View::errorCode(500);

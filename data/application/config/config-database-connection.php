@@ -2,9 +2,9 @@
 
 // Данные для соединения с базой чере PDO
 return [
-            'host'     => 'db',     // В docker-compose для image = mysql:5.7 установленное данное имя для хоста баз данных
-            'dbname'   => 'admin',
-            'charset'  => 'utf8',
-            'user'     => 'admin',
-            'password' => 'admin',
-        ];
+    'host' => 'db',     // В docker-compose для image = mysql:5.7 установленное данное имя для хоста баз данных
+    'dbname' => 'admin',
+    'charset' => 'utf8',
+    'user' => 'admin',
+    'password' => 'admin',
+];

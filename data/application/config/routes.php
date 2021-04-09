@@ -9,13 +9,25 @@ return [
         'controller' => 'main',
         'action' => 'index'
     ],
-    'login' => [
+    'dashboard' => [
         'controller' => 'main',
+        'action' => 'dashboard'
+    ],
+    'login' => [
+        'controller' => 'user',
         'action' => 'login'
     ],
     'register' => [
-        'controller' => 'main',
+        'controller' => 'user',
         'action' => 'register'
+    ],
+    'register-user' => [
+        'controller' => 'user',
+        'action' => 'signup'
+    ],
+    'login-user' => [
+        'controller' => 'user',
+        'action' => 'signIn',
     ],
     'adminer' => [
         'controller' => 'main',

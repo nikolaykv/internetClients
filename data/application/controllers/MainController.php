@@ -18,14 +18,9 @@ class MainController extends Controller
         $this->viewData->renderViews('Главная страница', array(), $localhost);
     }
 
-    public function loginAction() {
-        $this->viewData->commonLayout = 'custom';
-        $this->viewData->renderViews('Вход');
-    }
-
-    public function registerAction() {
-        $this->viewData->commonLayout = 'custom';
-        $this->viewData->renderViews('Вход');
+    public function dashboardAction() {
+        $this->viewData->commonLayout = 'dashboard';
+        $this->viewData->renderViews('Личный кабинет');
     }
 
     /**

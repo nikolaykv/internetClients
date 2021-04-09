@@ -5,7 +5,7 @@
                 <div class="card-header">Регистрация</div>
 
                 <div class="card-body">
-                    <form method="POST" action="register">
+                    <form method="POST" action="register-user">
 
                         <!-- Имя -->
                         <div class="form-group row">
@@ -68,22 +68,6 @@
                                        type="password"
                                        class="form-control"
                                        name="password"
-                                       required>
-                            </div>
-                        </div>
-
-                        <!-- Confirm password -->
-                        <div class="form-group row">
-                            <label for="password-confirm"
-                                   class="col-md-4 col-form-label text-md-right">
-                                Подтвердите пароль
-                            </label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm"
-                                       type="password"
-                                       class="form-control"
-                                       name="password_confirmation"
                                        required>
                             </div>
                         </div>
