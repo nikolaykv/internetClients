@@ -1,0 +1,7 @@
+.idea
+
+docker/db/**/*
+docker/nginx/logs/**/*
+
+data/composer.lock
+data/vendor/**/*
