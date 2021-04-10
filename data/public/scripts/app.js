@@ -2,13 +2,18 @@ $(document).ready(function () {
     $('.register-user-btn').click(function (event) {
         event.preventDefault();
 
+        let inputs = [
+            $('input[name="name"]'),
+            $('input[name="surname"]'),
+            $('input[name="email"]'),
+            $('input[name="password"]')
+        ];
 
         let formData = {
-            'name': $('input[name="name"]').val(),
-            'surname': $('input[name="surname"]').val(),
-            'email': $('input[name="email"]').val(),
-            'password': $('input[name="password"]').val()
-
+            'name': inputs[0].val(),
+            'surname': inputs[1].val(),
+            'email': inputs[2].val(),
+            'password': inputs[3].val()
         };
 
         $.ajax({
@@ -17,26 +22,46 @@ $(document).ready(function () {
             dataType: 'json',
             cache: false,
             data: formData,
-            success: function (data, textStatus, XMLHttpRequest) {
-                console.groupCollapsed('success');
-                console.log(data);
-                console.log(textStatus);
-                console.log(XMLHttpRequest);
-                console.groupEnd();
-            },
-            error: function (XMLHttpRequest, textStatus, error) {
-                console.groupCollapsed('error');
-                console.log(XMLHttpRequest);
-                console.log(textStatus);
-                console.log(error);
-                console.groupEnd();
-            },
-            complete: function (event, XMLHttpRequest, ajaxOption) {
-                console.groupCollapsed('complete');
-                console.log(event);
-                console.log(XMLHttpRequest);
-                console.log(ajaxOption);
-                console.groupEnd();
+            success: function (data) {
+                if (!data.status) {
+                    switch (true) {
+                        // Имя
+                        case data.fields.hasOwnProperty("name_error_required"):
+                            inputs[0].addClass("is-invalid").next().text(data.fields.name_error_required);
+                            break;
+                        case data.fields.hasOwnProperty("name_error_length"):
+                            inputs[0].addClass("is-invalid").next().text(data.fields.name_error_length);
+                            break;
+
+                        // Фамилия
+                        case data.fields.hasOwnProperty("surname_error_required"):
+                            inputs[1].addClass("is-invalid").next().text(data.fields.surname_error_required);
+                            break;
+                        case data.fields.hasOwnProperty("surname_error_length"):
+                            inputs[1].addClass("is-invalid").next().text(data.fields.surname_error_length);
+                            break;
+
+                        // email
+                        case data.fields.hasOwnProperty("email_error_required"):
+                            inputs[2].addClass("is-invalid").next().text(data.fields.email_error_required);
+                            break;
+                        case data.fields.hasOwnProperty("email_error_invalid"):
+                            inputs[2].addClass("is-invalid").next().text(data.fields.email_error_invalid);
+                            break;
+
+                        // Пароль
+                        case data.fields.hasOwnProperty("password_error_required"):
+                            inputs[3].addClass("is-invalid").next().text(data.fields.password_error_required);
+                            break;
+                        case data.fields.hasOwnProperty("password_error_length"):
+                            inputs[3].addClass("is-invalid").next().text(data.fields.password_error_length);
+                            break;
+                    }
+
+                    if (data.type === 2) {
+                         $('.alert-danger').removeClass('d-none').addClass('d-block').text(data.fields);
+                    }
+                }
             }
         });
     });

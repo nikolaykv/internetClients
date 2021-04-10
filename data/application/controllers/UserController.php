@@ -33,10 +33,11 @@ class UserController extends Controller
                     'fields' => $validateErrors
                 ];
                 echo json_encode($response);
+                die();
             } else {
                 $result = $this->model->registerNewSimpleUser($_POST);
+
                 if ($result) {
-                    //TODO записывать информацию об пользователе в сессию и чекать его по кукам, а также защитить маршруты по ролям пользователей
                     $response = [
                         'status' => $result,
                         'type' => 1,
@@ -44,10 +45,9 @@ class UserController extends Controller
                     ];
                 } else {
                     $response = [
-                        'status' => false,
+                        'status' => $result,
                         'type' => 2,
-                        'system_message' => 'Выброшено исключение при добавлении нового пользователя!',
-                        'message' => $result
+                        'fields' => 'В системе уже имеется пользователь с указанными данными!'
                     ];
                 }
                 echo json_encode($response);

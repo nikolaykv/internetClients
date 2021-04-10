@@ -3,8 +3,8 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header">Регистрация</div>
-
                 <div class="card-body">
+                    <div class="alert alert-danger mb-3 mt-1 d-none text-center" role="alert"></div>
                     <form>
                         <!-- Имя -->
                         <div class="form-group row">
@@ -16,10 +16,14 @@
                             <div class="col-md-6">
                                 <input id="name"
                                        type="text"
-                                       class="form-control"
+                                       class="form-control "
                                        name="name"
                                        required
                                        autofocus>
+
+                                <span class="invalid-feedback" role="alert">
+                                        <strong></strong>
+                                    </span>
                             </div>
                         </div>
 
@@ -37,6 +41,9 @@
                                        name="surname"
                                        required
                                        autofocus>
+                                <span class="invalid-feedback" role="alert">
+                                        <strong></strong>
+                                    </span>
                             </div>
                         </div>
 
@@ -52,6 +59,9 @@
                                        class="form-control"
                                        name="email"
                                        required>
+                                <span class="invalid-feedback" role="alert">
+                                        <strong></strong>
+                                    </span>
                             </div>
                         </div>
 
@@ -68,6 +78,9 @@
                                        class="form-control"
                                        name="password"
                                        required>
+                                <span class="invalid-feedback" role="alert">
+                                        <strong></strong>
+                                    </span>
                             </div>
                         </div>
 

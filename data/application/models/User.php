@@ -12,7 +12,7 @@ class User extends Model
 
         $sql = $this->dataBase->insertRow(
             "INSERT INTO users (name, surname, email, password, is_admin)
-                  VALUES ('" . $data['name'] . "', '" . $data['surname'] . "', '" . $data['email'] . "', '" . $data['password'] . "', '" . $data['is_admin'] . "');"
+                  VALUES ('" . $data['name'] . "', '" . $data['surname'] . "', '" . $data['email'] . "', '" . password_hash(str_shuffle($data['password']), PASSWORD_DEFAULT) . "', '" . $data['is_admin'] . "');"
         );
 
         return $sql;

@@ -71,10 +71,9 @@ class DataBase
     public function insertRow($sql)
     {
         try {
-            $this->connection->prepare($sql)->execute();
-            return true;
+            return $this->connection->prepare($sql)->execute();
         } catch (PDOException $e) {
-            return $e->getMessage();
+            return false;
         }
     }
 }
