@@ -16,7 +16,7 @@
                             <div class="col-md-6">
                                 <input id="name"
                                        type="text"
-                                       class="form-control "
+                                       class="form-control"
                                        name="name"
                                        required
                                        autofocus>

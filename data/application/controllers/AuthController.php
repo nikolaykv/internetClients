@@ -5,7 +5,7 @@ namespace application\controllers;
 use application\core\Controller;
 use application\core\View;
 
-class UserController extends Controller
+class AuthController extends Controller
 {
     public function loginAction()
     {
@@ -35,7 +35,7 @@ class UserController extends Controller
                 echo json_encode($response);
                 die();
             } else {
-                $result = $this->model->registerNewSimpleUser($_POST);
+                $result = $this->model->register($_POST);
 
                 if ($result) {
                     $response = [
@@ -60,7 +60,7 @@ class UserController extends Controller
     public function signInAction()
     {
         if ($_POST) {
-            $result = $this->model->getSimpleUser($_POST);
+            $result = $this->model->getUser($_POST);
 
             if ($result and count($result) > 0) {
                 // TODO сообщение об успехе

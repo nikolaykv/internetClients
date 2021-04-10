@@ -14,19 +14,19 @@ return [
         'action' => 'dashboard'
     ],
     'login' => [
-        'controller' => 'user',
+        'controller' => 'auth',
         'action' => 'login'
     ],
     'register' => [
-        'controller' => 'user',
+        'controller' => 'auth',
         'action' => 'register'
     ],
     'register-user' => [
-        'controller' => 'user',
+        'controller' => 'auth',
         'action' => 'signup'
     ],
     'login-user' => [
-        'controller' => 'user',
+        'controller' => 'auth',
         'action' => 'signIn',
     ],
     'adminer' => [

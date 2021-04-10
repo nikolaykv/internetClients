@@ -4,9 +4,9 @@ namespace application\models;
 
 use application\core\Model;
 
-class User extends Model
+class Auth extends Model
 {
-    public function registerNewSimpleUser($data)
+    public function register($data)
     {
         $data['is_admin'] = 2;
 
@@ -18,7 +18,7 @@ class User extends Model
         return $sql;
     }
 
-    public function getSimpleUser($data)
+    public function getUser($data)
     {
         $sql = $this->dataBase->row("SELECT * FROM users WHERE email = '" . $data["email"] . "' AND password = '" . $data['password'] . "';");
 
