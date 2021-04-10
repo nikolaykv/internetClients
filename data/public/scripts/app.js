@@ -13,7 +13,8 @@ $(document).ready(function () {
             'name': inputs[0].val(),
             'surname': inputs[1].val(),
             'email': inputs[2].val(),
-            'password': inputs[3].val()
+            'password': inputs[3].val(),
+            'action': 'register'
         };
 
         $.ajax({
@@ -59,9 +60,60 @@ $(document).ready(function () {
                     }
 
                     if (data.type === 2) {
-                         $('.alert-danger').removeClass('d-none').addClass('d-block').text(data.fields);
+                        $('.alert-danger').removeClass('d-none').addClass('d-block').text(data.fields);
                     }
                 }
+            }
+        });
+    });
+
+
+    $('.login-user-btn').click(function (event) {
+        event.preventDefault();
+
+        let inputs = [
+            $('input[name="email"]'),
+            $('input[name="password"]'),
+        ];
+
+        let formData = {
+            'email': inputs[0].val(),
+            'password': inputs[1].val(),
+            'action': 'login'
+        };
+
+        $.ajax({
+            url: '/login-user',
+            method: 'POST',
+            dataType: 'json',
+            cache: false,
+            data: formData,
+            success: function (data) {
+
+                if (!data.status) {
+                    switch (true) {
+                        // email
+                        case data.fields.hasOwnProperty("email_error_required"):
+                            inputs[0].addClass("is-invalid").next().text(data.fields.email_error_required);
+                            break;
+                        case data.fields.hasOwnProperty("email_error_invalid"):
+                            inputs[0].addClass("is-invalid").next().text(data.fields.email_error_invalid);
+                            break;
+
+                        // Пароль
+                        case data.fields.hasOwnProperty("password_error_required"):
+                            inputs[1].addClass("is-invalid").next().text(data.fields.password_error_required);
+                            break;
+                        case data.fields.hasOwnProperty("password_error_length"):
+                            inputs[1].addClass("is-invalid").next().text(data.fields.password_error_length);
+                            break;
+                    }
+
+                    if (data.type === 2) {
+                        $('.alert-danger').removeClass('d-none').addClass('d-block').text(data.fields);
+                    }
+                }
+
             }
         });
     });

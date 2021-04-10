@@ -43,6 +43,7 @@ class AuthController extends Controller
                         'type' => 1,
                         'message' => 'Пользователь успешно зарегистрирован в системе!'
                     ];
+                    // TODO редирект и вывод информационного сообщения об успехе куда-нибудь
                 } else {
                     $response = [
                         'status' => $result,
@@ -60,14 +61,39 @@ class AuthController extends Controller
     public function signInAction()
     {
         if ($_POST) {
-            $result = $this->model->getUser($_POST);
+            $validateErrors = $this->validateData($_POST);
 
-            if ($result and count($result) > 0) {
-                // TODO сообщение об успехе
-                $this->viewData->redirect('http://' . $_SERVER['SERVER_NAME'] . '/dashboard');
+            if (!empty($validateErrors)) {
+                $response = [
+                    'status' => false,
+                    'type' => 0,
+                    'message' => 'Ошибки валидации',
+                    'fields' => $validateErrors
+                ];
+                echo json_encode($response);
+                die();
+            } else {
+                $result = $this->model->getUser($_POST);
+
+                if ($result and count($result) > 0)  {
+                    $response = [
+                        'status' => true,
+                        'type' => 1,
+                        'message' => 'Пользователь успешно авторизовался в системе!',
+                    ];
+                    // TODO запись данных о пользователе в сессию и отправка cookie
+                    // TODO редирект и вывод информационного сообщения об успехе
+                } else {
+                    $response = [
+                        'status' => false,
+                        'type' => 2,
+                        'fields' => 'Данный пользователь ранее не регистрировался в системе!',
+                    ];
+                    echo json_encode($response);
+                }
             }
+
         } else {
-            // TODO сообщение об не поддерживаем для данного маршрута методе
             View::errorCode(404);
         }
     }
