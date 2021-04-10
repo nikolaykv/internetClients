@@ -80,6 +80,10 @@ class View
     public static function errorCode($code)
     {
         http_response_code($code);
+
+
+
+
         $errorPathPage = 'application/views/errors/' . $code . '.php';
 
         if (file_exists($errorPathPage)) {

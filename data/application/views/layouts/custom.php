@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md navbar-light bg-white">
     <div class="container">
         <a class="navbar-brand" href="/">
             Структура данных
@@ -29,10 +29,20 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
+
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="/">На главную</a>
                 </li>
+                <? if (isset($route) and $route == 'login'): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= $localhost; ?>/register">Регистрация</a>
+                    </li>
+                <? else: ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= $localhost; ?>/login">Вход</a>
+                    </li>
+                <? endif; ?>
             </ul>
         </div>
     </div>

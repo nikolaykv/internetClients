@@ -10,7 +10,7 @@ class UserController extends Controller
     public function loginAction()
     {
         $this->viewData->commonLayout = 'custom';
-        $this->viewData->renderViews('Вход');
+        $this->viewData->renderViews('Вход', array('route' => $this->routesData['action']));
     }
 
     public function registerAction()
