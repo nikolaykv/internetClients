@@ -70,7 +70,6 @@ $(document).ready(function () {
         });
     });
 
-
     $('.login-user-btn').click(function (event) {
         event.preventDefault();
 
@@ -120,6 +119,17 @@ $(document).ready(function () {
                     window.location.href = "http://localhost/dashboard";
                 }
             }
+        });
+    });
+
+    $('.logout-user-btn').click(function (event) {
+       event.preventDefault();
+
+        $.post('/logout', {logout: true}, function(data){
+
+            /*if (true) {
+                window.location.href = "http://localhost/";
+            }*/
         });
     });
 });

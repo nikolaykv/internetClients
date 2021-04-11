@@ -31,18 +31,33 @@
 
 
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">На главную</a>
-                </li>
-                <? if (isset($route) and $route == 'login'): ?>
+                <? if (!isset($_SESSION['user'])): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $localhost; ?>/register">Регистрация</a>
+                        <a class="nav-link" href="<?=$localhost; ?>/login">Вход</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?=$localhost; ?>/register">Регистрация</a>
                     </li>
                 <? else: ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= $localhost; ?>/login">Вход</a>
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle"
+                           href="#" role="button"
+                           data-toggle="dropdown"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                            <?=$_SESSION['user']['name'] ?>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right"
+                             aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item logout-user-btn"
+                               href="/logout">
+                                Выйти
+                            </a>
+                        </div>
                     </li>
-                <? endif; ?>
+                <?endif; ?>
             </ul>
         </div>
     </div>
@@ -52,6 +67,8 @@
 </main>
 <script src="<?= $localhost; ?>/public/scripts/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="<?= $localhost; ?>/public/scripts/bootsrap/bootstrap.bundle.min.js"></script>
+<script src="<?= $localhost; ?>/public/scripts/bootsrap/popper.min.js"></script>
+
 <script src="<?= $localhost; ?>/public/scripts/app.js"></script>
 
 </body>

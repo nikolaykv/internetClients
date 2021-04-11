@@ -9,6 +9,7 @@ class AuthController extends Controller
 {
     public function loginAction()
     {
+
         $this->viewData->commonLayout = 'custom';
         $this->viewData->renderViews('Вход', array('route' => $this->routesData['action']));
     }
@@ -17,6 +18,15 @@ class AuthController extends Controller
     {
         $this->viewData->commonLayout = 'custom';
         $this->viewData->renderViews('Вход');
+    }
+
+    public function logoutAction()
+    {
+        if (!isset($_POST['logout'])) {
+            session_unset();
+
+            $this->viewData->redirect($_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME']);
+        }
     }
 
     public function signupAction()

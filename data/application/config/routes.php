@@ -17,6 +17,10 @@ return [
         'controller' => 'auth',
         'action' => 'login'
     ],
+    'logout' => [
+        'controller' => 'auth',
+        'action' => 'logout'
+    ],
     'register' => [
         'controller' => 'auth',
         'action' => 'register'
