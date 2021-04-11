@@ -6,5 +6,11 @@ use application\core\Model;
 
 class Main extends Model
 {
-    // Опишите здесь какой-нибудь метод
+    public function allCategories()
+    {
+        $sql = 'test';
+
+
+        return $sql;
+    }
 }

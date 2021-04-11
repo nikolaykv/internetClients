@@ -13,6 +13,10 @@ return [
         'controller' => 'main',
         'action' => 'dashboard'
     ],
+    'adminer' => [
+        'controller' => 'main',
+        'action' => 'adminer'
+    ],
     'login' => [
         'controller' => 'auth',
         'action' => 'login'
@@ -36,9 +40,5 @@ return [
     'login-user' => [
         'controller' => 'auth',
         'action' => 'signIn',
-    ],
-    'adminer' => [
-        'controller' => 'main',
-        'action' => 'adminer'
     ],
 ];

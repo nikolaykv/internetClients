@@ -20,7 +20,19 @@ class MainController extends Controller
 
     public function dashboardAction() {
         $this->viewData->commonLayout = 'dashboard';
-        $this->viewData->renderViews('Личный кабинет');
+
+        $result = $this->getCategories();
+
+        debug($result);
+
+
+
+        $this->viewData->renderViews('Личный кабинет', $result);
+    }
+
+    public function getCategories() {
+        $result = $this->model->allCategories();
+        return $result;
     }
 
     /**
@@ -30,4 +42,5 @@ class MainController extends Controller
     {
         $this->viewData->redirect('http://' . $_SERVER['SERVER_NAME'] . ':8080');
     }
+
 }
