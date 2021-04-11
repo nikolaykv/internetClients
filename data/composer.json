@@ -11,6 +11,7 @@
   "minimum-stability": "dev",
   "require": {
     "illuminate/database": "6.*",
-    "fzaninotto/faker": "1.*"
+    "fzaninotto/faker": "1.*",
+    "mbezhanov/faker-provider-collection": "1.2.1"
   }
 }
