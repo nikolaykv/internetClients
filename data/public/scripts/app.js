@@ -62,6 +62,9 @@ $(document).ready(function () {
                     if (data.type === 2) {
                         $('.alert-danger').removeClass('d-none').addClass('d-block').text(data.fields);
                     }
+                } else {
+                    $.post('/success', data, function (data) {});
+                    window.location.href = "http://localhost/login";
                 }
             }
         });
@@ -112,8 +115,10 @@ $(document).ready(function () {
                     if (data.type === 2) {
                         $('.alert-danger').removeClass('d-none').addClass('d-block').text(data.fields);
                     }
+                } else {
+                    $.post('/success', data, function (data) {});
+                    window.location.href = "http://localhost/dashboard";
                 }
-
             }
         });
     });

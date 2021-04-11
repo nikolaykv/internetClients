@@ -25,6 +25,10 @@ return [
         'controller' => 'auth',
         'action' => 'signup'
     ],
+    'success' => [
+        'controller' => 'auth',
+        'action' => 'success'
+    ],
     'login-user' => [
         'controller' => 'auth',
         'action' => 'signIn',

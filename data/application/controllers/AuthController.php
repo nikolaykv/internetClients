@@ -41,9 +41,9 @@ class AuthController extends Controller
                     $response = [
                         'status' => $result,
                         'type' => 1,
-                        'message' => 'Пользователь успешно зарегистрирован в системе!'
+                        'message' => 'Пользователь успешно зарегистрирован в системе!',
+                        'action' => 'register'
                     ];
-                    // TODO редирект и вывод информационного сообщения об успехе куда-нибудь
                 } else {
                     $response = [
                         'status' => $result,
@@ -75,14 +75,22 @@ class AuthController extends Controller
             } else {
                 $result = $this->model->getUser($_POST);
 
-                if ($result and count($result) > 0)  {
+                if ($result and count($result) > 0) {
                     $response = [
                         'status' => true,
                         'type' => 1,
-                        'message' => 'Пользователь успешно авторизовался в системе!',
+                        'message' => 'Вы успешно авторизованы!',
+                        'action' => 'login',
+                        'user_data' => [
+                            'id' => $result[0]['id'],
+                            'name' => $result[0]['name'],
+                            'surname' => $result[0]['surname'],
+                            'email' => $result[0]['email'],
+                            'is_admin' => $result[0]['is_admin'],
+                            'created_at' => $result[0]['created_at'],
+                        ]
                     ];
-                    // TODO запись данных о пользователе в сессию и отправка cookie
-                    // TODO редирект и вывод информационного сообщения об успехе
+                    echo json_encode($response);
                 } else {
                     $response = [
                         'status' => false,
@@ -93,6 +101,23 @@ class AuthController extends Controller
                 }
             }
 
+        } else {
+            View::errorCode(404);
+        }
+    }
+
+    public function successAction()
+    {
+        if ($_POST) {
+            if ($_POST['action'] === 'register') {
+                $_SESSION['register_success'] = [
+                    'status' => $_POST['status'],
+                    'register' => $_POST['type'],
+                    'message' => $_POST['message']
+                ];
+            } elseif ($_POST['action'] === 'login') {
+                $_SESSION['user'] = $_POST['user_data'];
+            }
         } else {
             View::errorCode(404);
         }

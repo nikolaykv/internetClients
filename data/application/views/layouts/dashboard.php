@@ -38,7 +38,23 @@
     </div>
 </nav>
 <main class="py-5">
-    <?= $content; ?>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header">Управление</div>
+                    <div class="card-body">
+                        <? if (isset($_SESSION['user'])): ?>
+                        <pre>
+                            <? var_dump($_SESSION['user']); ?>
+                        </pre>
+                        <? endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?/*= $content; */?>
 </main>
 <script src="<?= $localhost; ?>/public/scripts/bootsrap/bootstrap.bundle.min.js"
 </body>

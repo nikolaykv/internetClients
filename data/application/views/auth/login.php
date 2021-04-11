@@ -7,6 +7,13 @@
                 </div>
                 <div class="card-body">
                     <div class="alert alert-danger mb-3 mt-1 d-none text-center" role="alert"></div>
+
+                    <? if (isset($_SESSION['register_success'])): ?>
+                    <div class="alert alert-success mb-3 mt-1 text-center" role="alert">
+                        <?=$_SESSION['register_success']['message']; ?>
+                    </div>
+                    <? endif; ?>
+
                     <form>
                         <div class="form-group row">
                             <label for="email"
